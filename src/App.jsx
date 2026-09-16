@@ -7,7 +7,9 @@ import "./App.css";
 
 export default function App() {
   const [cart, setCart] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategories, setSelectedCategories] = useState([]); // empty = "All"
+  const [selectedDietaryTags, setSelectedDietaryTags] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [showPayment, setShowPayment] = useState(false);
 
   function addToCart(dish) {
@@ -49,8 +51,12 @@ export default function App() {
       <main className="app-main">
         <Menu
           dishes={dishes}
-          selectedCategory={selectedCategory}
-          onCategoryChange={setSelectedCategory}
+          selectedCategories={selectedCategories}
+          onCategoryChange={setSelectedCategories}
+          selectedDietaryTags={selectedDietaryTags}
+          onDietaryTagsChange={setSelectedDietaryTags}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
           onAddToCart={addToCart}
         />
         <Cart cart={cart} onRemove={removeFromCart} onCheckout={() => setShowPayment(true)} />
